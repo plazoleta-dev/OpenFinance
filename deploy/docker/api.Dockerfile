@@ -2,6 +2,13 @@ FROM python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a7
 
 COPY --from=ghcr.io/astral-sh/uv:0.8@sha256:1d31be550ff927957472b2a491dc3de1ea9b5c2d319a9cea5b6a48021e2990a6 /uv /usr/local/bin/uv
 
+# Parches de seguridad de Debian sobre la imagen fijada por digest. El digest tarda días en
+# recoger un parche publicado (CVE-2026-109518 en apt, CVE-2026-85091 en zlib1g, 17-11-2026)
+# y Trivy tumba el CI mientras tanto. A cambio, la imagen deja de ser bit a bit reproducible.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
 # PYTHONUTF8: sin él, el contenedor lee el teclado como ASCII y un nombre con tilde («Raúl»)
 # escrito en `openfinance bootstrap` llega roto a la base de datos.
 ENV UV_COMPILE_BYTECODE=1 \

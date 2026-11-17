@@ -79,7 +79,7 @@ class Response(io.BytesIO):
 def body(**kw: str) -> Response:
     data = {
         "tag_name": "v0.3.0",
-        "html_url": "https://github.com/rldona/OpenFinance/releases/tag/v0.3.0",
+        "html_url": "https://github.com/plazoleta-dev/OpenFinance/releases/tag/v0.3.0",
     }
     data.update(kw)
     return Response(json.dumps(data).encode())
@@ -96,7 +96,9 @@ class TestGithub:
                 raise item
             return item
 
-        source = GithubLatestRelease("rldona/OpenFinance", clock=lambda: clock[0], opener=opener)
+        source = GithubLatestRelease(
+            "plazoleta-dev/OpenFinance", clock=lambda: clock[0], opener=opener
+        )
         return source, calls
 
     def test_reads_the_latest_release_and_caches_it(self) -> None:
@@ -104,7 +106,7 @@ class TestGithub:
         source, calls = self.make([body()], clock)
         first = source.latest()
         assert first == LatestRelease(
-            "0.3.0", "https://github.com/rldona/OpenFinance/releases/tag/v0.3.0"
+            "0.3.0", "https://github.com/plazoleta-dev/OpenFinance/releases/tag/v0.3.0"
         )
         clock[0] = 3600
         assert source.latest() == first
@@ -113,7 +115,10 @@ class TestGithub:
     def test_refreshes_after_the_ttl(self) -> None:
         clock = [0.0]
         source, calls = self.make(
-            [body(), body(tag_name="v0.4.0", html_url="https://github.com/rldona/OpenFinance/x/")],
+            [
+                body(),
+                body(tag_name="v0.4.0", html_url="https://github.com/plazoleta-dev/OpenFinance/x/"),
+            ],
             clock,
         )
         source.latest()
@@ -135,7 +140,10 @@ class TestGithub:
         source, calls = self.make([body()], [0.0])
         source.latest()
         request = calls[0]
-        assert request.full_url == "https://api.github.com/repos/rldona/OpenFinance/releases/latest"  # type: ignore[attr-defined]
+        assert (
+            request.full_url
+            == "https://api.github.com/repos/plazoleta-dev/OpenFinance/releases/latest"
+        )  # type: ignore[attr-defined]
         assert dict(request.header_items()) == {  # type: ignore[attr-defined]
             "Accept": "application/vnd.github+json",
             "User-agent": "OpenFinance",

@@ -24,7 +24,7 @@ A ticket is done when it meets its acceptance criteria, has tests, and `make che
 
 ## How to resume
 
-Status as of 1 November 2026. Code at [github.com/rldona/OpenFinance](https://github.com/rldona/OpenFinance) (public, `main` branch). CI green in all its jobs: `backend`, `frontend`, `licenses` and `compose-e2e` in the `direct` and `https` modes.
+Status as of 1 November 2026. Code at [github.com/plazoleta-dev/OpenFinance](https://github.com/plazoleta-dev/OpenFinance) (public, `main` branch). CI green in all its jobs: `backend`, `frontend`, `licenses` and `compose-e2e` in the `direct` and `https` modes.
 
 ### What is left for v0.1, in order
 

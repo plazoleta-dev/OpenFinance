@@ -9,7 +9,7 @@ const NEW = {
   current: '0.2.0',
   enabled: true,
   latest: '0.3.0',
-  url: 'https://github.com/rldona/OpenFinance/releases/tag/v0.3.0',
+  url: 'https://github.com/plazoleta-dev/OpenFinance/releases/tag/v0.3.0',
   update_available: true,
 }
 

@@ -7,8 +7,8 @@
 
 services:
   api:
-    image: ghcr.io/rldona/openfinance-api:${OPENFINANCE_VERSION:?Define OPENFINANCE_VERSION en .env}
+    image: ghcr.io/plazoleta-dev/openfinance-api:${OPENFINANCE_VERSION:?Define OPENFINANCE_VERSION en .env}
     build: !reset null
   web:
-    image: ghcr.io/rldona/openfinance-web:${OPENFINANCE_VERSION:?Define OPENFINANCE_VERSION en .env}
+    image: ghcr.io/plazoleta-dev/openfinance-web:${OPENFINANCE_VERSION:?Define OPENFINANCE_VERSION en .env}
     build: !reset null

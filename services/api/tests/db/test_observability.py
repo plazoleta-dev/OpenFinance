@@ -111,7 +111,7 @@ class TestVersionEndpoint:
         class Source:
             def latest(self) -> LatestRelease:
                 return LatestRelease(
-                    "99.0.0", "https://github.com/rldona/OpenFinance/releases/tag/v99.0.0"
+                    "99.0.0", "https://github.com/plazoleta-dev/OpenFinance/releases/tag/v99.0.0"
                 )
 
         app.dependency_overrides[get_release_source] = lambda: Source()

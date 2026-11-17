@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     """Carpeta de los adjuntos (OF-1007). En Docker es un volumen y entra en la copia."""
     update_check: bool = False
     """Avisar de versiones nuevas consultando GitHub (OF-907). Apagado por defecto."""
-    update_repo: str = "rldona/OpenFinance"
+    update_repo: str = "plazoleta-dev/OpenFinance"
     vapid_public_key: str = ""
     """Claves VAPID (Web Push, OF-1302). Sin las tres, las notificaciones están apagadas."""
     vapid_private_key: str = ""

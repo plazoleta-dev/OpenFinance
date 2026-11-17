@@ -179,16 +179,16 @@ From the web app, **"Exportar"** (Export) (top right) downloads a JSON or a ZIP 
 
 ## 8. Published and signed images (optional)
 
-By default `make up` builds the images on your machine. Each version (`vX.Y.Z`) is also published prebuilt for x86-64 and ARM at `ghcr.io/rldona/openfinance-api` and `ghcr.io/rldona/openfinance-web`, **signed with [cosign](https://github.com/sigstore/cosign)** without own keys: the signature comes from the identity of the GitHub workflow that built them and is recorded in Sigstore's public log. They also carry a bill of materials (SBOM) and provenance.
+By default `make up` builds the images on your machine. Each version (`vX.Y.Z`) is also published prebuilt for x86-64 and ARM at `ghcr.io/plazoleta-dev/openfinance-api` and `ghcr.io/plazoleta-dev/openfinance-web`, **signed with [cosign](https://github.com/sigstore/cosign)** without own keys: the signature comes from the identity of the GitHub workflow that built them and is recorded in Sigstore's public log. They also carry a bill of materials (SBOM) and provenance.
 
 Verify the signature **before starting** (needs `cosign`):
 
 ```bash
 V=0.2.0
 for img in api web; do
-  cosign verify "ghcr.io/rldona/openfinance-$img:$V" \
+  cosign verify "ghcr.io/plazoleta-dev/openfinance-$img:$V" \
     --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-    --certificate-identity "https://github.com/rldona/OpenFinance/.github/workflows/release.yml@refs/tags/v$V"
+    --certificate-identity "https://github.com/plazoleta-dev/OpenFinance/.github/workflows/release.yml@refs/tags/v$V"
 done
 ```
 
